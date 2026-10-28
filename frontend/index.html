@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Farmer – AI Plant Disease Doctor</title>
+  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo-circle">🌿</div>
+    <div class="top-bar-text">
+      <h1>Smart Farmer – AI Plant Disease Doctor</h1>
+      <p>Upload a leaf photo to detect disease, see confidence and pesticide guidance.</p>
+    </div>
+  </header>
+
+  <main class="page-layout">
+    <!-- LEFT: Upload & preview -->
+    <section class="card upload-card">
+      <h2>1. Upload Leaf Image</h2>
+
+      <!-- Language buttons -->
+      <div class="lang-buttons-container">
+        <span class="lang-title">Language (UI only):</span>
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="hi">हिन्दी</button>
+        <button class="lang-btn" data-lang="kn">ಕನ್ನಡ</button>
+        <button class="lang-btn" data-lang="te">తెలుగు</button>
+        <button class="lang-btn" data-lang="ta">தமிழ்</button>
+        <button class="lang-btn" data-lang="mr">मराठी</button>
+        <button class="lang-btn" data-lang="bn">বাংলা</button>
+      </div>
+
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-content">
+          <div class="camera-icon">📷</div>
+          <p><strong>Click here</strong> or drag a leaf image (JPG / PNG).</p>
+          <p class="tip">Tip: Take a close photo of the diseased part of the leaf in good natural light.</p>
+        </div>
+        <input type="file" id="leaf-input" accept="image/*" />
+      </div>
+
+      <div class="preview-section">
+        <h3>Preview</h3>
+        <div class="preview-frame">
+          <img id="preview-image" alt="Leaf preview" />
+          <div id="preview-placeholder">No image selected</div>
+          <div id="scan-overlay" class="scan-overlay"></div>
+        </div>
+      </div>
+
+      <button id="analyze-btn" class="primary-btn">
+        🔍 Analyze Leaf
+      </button>
+      <p id="status-text" class="status-text"></p>
+    </section>
+
+    <!-- RIGHT: Result & advisory -->
+    <section class="card result-card">
+      <div class="result-header">
+        <h2 id="result-section-title">2. Result & Advice</h2>
+        <span class="ai-tag" id="ai-tag-label">AI RESULT</span>
+      </div>
+
+      <!-- Loading block -->
+      <div id="loading-indicator" class="loading hidden">
+        <div class="spinner"></div>
+        <p id="loading-text">Analyzing leaf… Please wait</p>
+        <div id="emoji-progress" class="emoji-progress">🍃</div>
+        <small id="loading-subtext">AI detecting disease and confidence level</small>
+      </div>
+
+      <!-- Empty state -->
+      <div id="result-empty" class="result-empty">
+        <span id="empty-text">
+          Upload a leaf image and click <strong>Analyze Leaf</strong> to see results here.
+        </span>
+      </div>
+
+      <!-- Result content -->
+      <div id="result-content" class="result-content hidden">
+        <h3 id="disease-name">Disease: –</h3>
+
+        <p class="model-conf">
+          <span id="model-conf-label">Model confidence:</span>
+          <span id="confidence-value">–</span>
+        </p>
+
+        <span id="confidence-badge" class="conf-badge conf-low hidden">
+          Low confidence
+        </span>
+        <p id="confidence-extra" class="confidence-extra"></p>
+
+        <p class="chem-warning" id="chem-warning">
+          Chemical pesticide – use safety gear and follow local guidelines. Consult your local agricultural expert before spraying.
+        </p>
+
+        <!-- Field advisory -->
+        <section class="info-block">
+          <h4 id="field-advisory-title">Field Advisory</h4>
+          <p id="field-advisory"></p>
+        </section>
+
+        <!-- Pesticide & Organic info -->
+        <section class="info-block">
+          <h4 id="recommended-title">Recommended Pesticide</h4>
+
+          <div id="organic-badge" class="badge-organic hidden">
+            <span class="leaf-icon">🌱</span>
+            <span id="organic-badge-text">Organic option available</span>
+          </div>
+          <p id="organic-note" class="organic-note"></p>
+
+          <p id="pesticide-name" class="pesticide-title"></p>
+          <p id="pesticide-info" class="pesticide-info"></p>
+
+          <div class="pesticide-image-wrapper">
+            <img
+              id="pesticide-image"
+              src=""
+              alt="Pesticide brand"
+              class="pesticide-image"
+            />
+          </div>
+        </section>
+
+        <div class="actions-row">
+          <button id="download-pdf" class="ghost-btn">
+            <span id="download-pdf-label">📄 Download Farmer Report (English PDF)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Made for farmers with ❤️ | Smart AI Plant Health Assistant</p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

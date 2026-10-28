@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.h5
+*.keras
+uploads/
+data/
+*.log
+.DS_Store
